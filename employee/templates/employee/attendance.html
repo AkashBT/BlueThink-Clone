@@ -2,6 +2,11 @@
 
 {% block content%}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
 <style>
     .month{
         border: 1px solid black !important;
@@ -15,7 +20,7 @@
     <div class="row">
     <h1><u>Attendance Section</u></h1>
     <div class="col-md-9">
-        <table class="table table-bordered" id="month1">
+        <table id="example" class="table table table-responsive" style="width:100%">
             <thead>
             <tr>
                 <th>Date</th>
@@ -24,7 +29,7 @@
                 <th>Status</th>
             </tr>
         </thead>
-        <tbody style=" overflow-y: scroll;">
+        <tbody>
             {%for i in final_data%}
             {%for key,value in i.items%}
             {%if tdm in key %}
@@ -63,10 +68,53 @@
       
     </div>
     <div class="col-md-3">
-        {{cal|safe}}
+        <div class="row">{{cal|safe}}</div>
+        <div class="row my-3">
+            <h3><u>Summary:</u></h3>
+            <h4 class="text-success">Today Total login : <span id="onlate">0</span></h4>
+            <h4 class="text-danger">Late Count: <span id="onlate">0</span></h4>
+        </div>
     </div>
 </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+    
+    </script>
+
+<script>
+    //gets table
+    var oTable = document.getElementById('example');
+
+    //gets rows of table
+    var rowLength = oTable.rows.length;
+    var count=0
+    //loops through rows    
+    for (i = 0; i < rowLength; i++){
+
+      //gets cells of current row  
+       var oCells = oTable.rows.item(i).cells;
+
+    //    //gets amount of cells of current row
+    //    var cellLength = oCells.length;
+
+    //    //loops through each cell in current row
+    //    for(var j = 0; j < cellLength; j++){
+
+    //           // get your cell info here
+
+    //           var cellVal = oCells.item(j).innerHTML;
+    //           alert(cellVal);
+    //        }
+        if(oCells[3].innerHTML=='LATE')
+        {
+            alert("TRUE");
+        }
+    }
+</script>
 
 
 

@@ -21,7 +21,9 @@
     <small {% if messages.tags%} class="{{message.tags}}" {%endif%}>{{message}}</small>
 {% endfor %}
 {% endif %}
-    <div class="container">
+{% if img.emp_status == 'Admin' %}
+                                        
+<div class="container">
         
     <form method = 'POST' class="col s12" enctype="multipart/form-data">
  
@@ -34,9 +36,11 @@
         <p><button type = "submit" class = "waves-effect waves-light btn" style = "background-color: teal">Publish</button></p>
     </form>
     </div>
+                                        {%endif%} 
+
     <hr>
     {%if images%}
-        <div class="container" style="height:540px; overflow-y:scroll;">
+        <div class="container">
             <div class="row">
                 
             {% for i in data %}
