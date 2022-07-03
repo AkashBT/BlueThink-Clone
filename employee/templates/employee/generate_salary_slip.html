@@ -1,0 +1,59 @@
+{% extends 'employee/dashboard.html'%}
+
+{% block content%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<style>
+    .month{
+        border: 1px solid black !important;
+        width: -webkit-fill-available  !important;
+    }
+    tr,td,th{
+        border: 1px solid black;
+    }
+</style>
+{% load static %}
+<div class="container">
+    <div class="row" >
+    <h1><u>Generate Salary Slip</u></h1>
+
+        {% if messages %}
+{% for message in messages %}
+    <small {% if messages.tags%} class="{{message.tags}}" {%endif%}>{{message}}</small>
+{% endfor %}
+{% endif %}
+    <div class="container">
+        
+    <form method = 'POST' class="col s12 form-control" enctype="multipart/form-data">
+ 
+        {% csrf_token %}
+ 
+    <div class="form-group">
+        <label><h3 for="date">SELECT MONTH :</h3></label>
+        <select id="month" class="form-control">
+            <option value="01">January</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+    </div>
+        <input type="submit" class="btn btn-outline-info my-2" value="Generate Slip">
+    </form>
+    </div>
+    <hr class="my-2">
+    
+
+
+</div>
+</div>
+
+
+
+{%endblock%}
